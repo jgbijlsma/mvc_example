@@ -3,8 +3,6 @@ const Message = require("../models/messageModel");
 async function create(req, res) {
   const { username, text } = req.body;
 
-  console.log(username, text);
-
   if (!username || !text)
     return res.render("clientError", { message: "Please enter all data." });
 
