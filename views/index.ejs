@@ -4,13 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Vaag GET /style.css op van de server. -->
+    <!-- Aangezien de server express.static() gebruikt zal er in de public folder gekeken worden of het style.css bestand erin zit. Zo ja: dan wordt het opgestuurd en toegepast als stylesheet. -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Vaag GET /getMessageCount.js op van de server. -->
+    <!-- Aangezien de server express.static() gebruikt zal er in de public folder gekeken worden of het getMessageCount.js bestand erin zit. Zo ja: dan wordt het opgestuurd en toegepast als JavaScript. -->
+    <!-- Defer zorgt ervoor dat alle elementen in de HTML eerst ingeladen worden voordat de JS wordt uitgevoerd. Dit is nodig omdat de JS elementen op id gaat zoeken -->
     <script src="getMessageCount.js" defer></script>
     <title>MVC example</title>
   </head>
   <body>
     <h1>MVC example app</h1>
 
+    <!-- Deze form laat de gebruiker een username en text invullen voor een nieuwe message. -->
+    <!-- Wanneer de form submitted wordt zal er een http POST request naar /message gaan met de ingevulde data als form-urlencoded content-type -->
     <form method="POST" action="/message">
       <input type="text" name="username" placeholder="Your name" />
       <input type="text" name="text" placeholder="Your message" />
@@ -19,10 +26,15 @@
 
     <h2>Messages</h2>
 
+    <!-- Deze button zal door de getMessageCount.js uit de script tag voorzien worden van een click event listener -->
     <button id="getCountBtn">Get message count</button>
+    <!-- Deze div zal gevuld worden met de hoeveelheid messages als number die we als JSON data van de server opvragen als er op de button geklikt wordt. -->
+    <!-- Dit wordt uitgevoerd in de getMessageCount.js in de script tag -->
     <div id="countContainer"></div>
 
+    <!-- Loop over alle messages die we van de controller meegrijgen in een array -->
     <% locals.messages?.forEach(message => { %>
+    <!-- maak voor elke message een div met een paragraaf met de username, en een paragraaf met de text van de message -->
     <div class="message">
       <p><%= message.username %></p>
       <p><%= message.text %></p>

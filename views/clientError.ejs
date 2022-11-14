@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Vaag GET /style.css op van de server. -->
+    <!-- Aangezien de server express.static() gebruikt zal er in de public folder gekeken worden of het style.css bestand erin zit. Zo ja: dan wordt het opgestuurd en toegepast als stylesheet. -->
     <link rel="stylesheet" href="style.css" />
     <title>Error</title>
   </head>
   <body>
+    <!-- toon een link die de browser de index pagina (homepagina) opnieuw laat verzoeken -->
     <a href="/">Back</a>
-    <h1><%= message %></h1>
+
+    <!-- toon de message uit een controller in een h1 -->
+    <h1><%= locals.message %></h1>
   </body>
 </html>
