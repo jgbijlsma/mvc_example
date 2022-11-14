@@ -1,5 +1,10 @@
 const Message = require("../models/messageModel");
 
+async function index(req, res) {
+  const messages = await Message.findAll();
+  res.render("index", { messages });
+}
+
 async function create(req, res) {
   const { username, text } = req.body;
 
@@ -20,6 +25,7 @@ async function getCount(req, res) {
 }
 
 module.exports = {
+  index,
   create,
   getCount,
 };

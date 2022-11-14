@@ -1,6 +1,5 @@
 const express = require("express");
 const { connectToDb } = require("./db");
-const pageControllers = require("./controllers/pageControllers");
 const messageControllers = require("./controllers/messageControllers");
 
 const app = express();
@@ -14,7 +13,6 @@ app.use(express.urlencoded({ extended: false }));
 
 connectToDb(() => console.log("Connected to database"));
 
-app.get("/", pageControllers.index);
-
+app.get("/", messageControllers.index);
 app.post("/message", messageControllers.create);
 app.get("/message/count", messageControllers.getCount);
