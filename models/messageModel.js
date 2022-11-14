@@ -8,7 +8,6 @@ async function create(data) {
 async function findAll() {
   const db = getDb();
   const messages = await db.collection("messages").find().toArray();
-  messages.reverse();
   return messages;
 }
 

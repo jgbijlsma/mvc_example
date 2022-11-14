@@ -2,6 +2,7 @@ const Message = require("../models/messageModel");
 
 async function index(req, res) {
   const messages = await Message.findAll();
+  messages.reverse();
   res.render("index", { messages });
 }
 
